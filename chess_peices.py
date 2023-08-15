@@ -20,6 +20,7 @@ class Chess_set:
 
 def rank_peice(peice):
     return Chess_set.names.index(peice.name) +  Chess_set.colors.index(peice.color) * 8
+
 black_rook = Peice("Black", "Rook")
 white_pawn = Peice("White", "Pawn")
 
