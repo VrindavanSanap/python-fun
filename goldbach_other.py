@@ -1,5 +1,12 @@
 #!/usr/bin/python3
 
+#
+# Breaking goldbachs other conjecture ie.
+# every odd composite number can be written as
+# the sum of prime and twice a square.
+#
+
+
 from sympy import isprime
 import math
 

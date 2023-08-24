@@ -1,5 +1,10 @@
 #!/usr/bin/python3
 
+#
+# Gpt code is fast AF
+#
+
+
 from itertools import product
 
 def possible(grid, x, y, n):
