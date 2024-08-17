@@ -1,17 +1,33 @@
-def repr_point(point):
+#!/usr/bin/env python3
+class Point:
+  __match_args__ = ("x", "y")
+
+  def __init__(self, x: int, y: int):
+    self.x = x
+    self.y = y
+
+
+def where_is(point):
   # point is an (x, y) tuple
   match point:
-    case (0, 0):
+    case Point(0, 0):
       print("Origin")
-    case (0, y):
+    case Point(0, y):
       print(f"Y={y}")
-    case (x, 0):
+    case Point(x, 0):
       print(f"X={x}")
-    case (x, y):
-      print(f"X={x}, Y={y}")
+    case Point(x, y):
+      print(f"X={x} Y={y}")
+
+    case Point():
+      print("Somewhere else")
     case _:
-      raise ValueError("Not a point")
+      print("Not a point")
 
 
-repr_point((0, 2))
-repr_point((2, 2))
+a = Point(1, 2)
+b = Point(0, 21)
+c = Point(1, 0)
+where_is(a)
+where_is(b)
+where_is(c)
