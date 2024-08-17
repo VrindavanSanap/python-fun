@@ -1,0 +1,52 @@
+name: Ruff Formatter
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+    
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install Ruff and isort
+        run: |
+          python -m pip install --upgrade pip
+          pip install ruff isort
+
+      - name: Run Ruff format
+        run: |
+          ruff format 
+
+      - name: Run isort
+        run: |
+          isort .
+
+      - name: Configure Git
+        run: |
+          git config user.name 'github-actions'
+          git config user.email 'github-actions@github.com'
+
+      - name: Commit changes
+        run: |
+          git add .
+          git commit -m 'Format code with Ruff and isort' || echo "No changes to commit"
+
+      - name: Push changes
+        run: |
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
