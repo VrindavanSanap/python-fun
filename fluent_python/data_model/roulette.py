@@ -12,6 +12,13 @@ class Roulette:
 
 	def spin(self):
 		return random.choice(self.nums)
-r = Roulette()		
-res = r.spin()
-print(res)
+r = Roulette()
+while True:
+    user_input = input("Press 'r' to spin or 'q' to quit: ")
+    if user_input.lower() == 'r':
+        res = r.spin()
+        print(res)
+    elif user_input.lower() == 'q':
+        break
+    else:
+        print("Invalid input. Please press 'r' to spin or 'q' to quit.")
