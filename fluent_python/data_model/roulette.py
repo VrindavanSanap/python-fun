@@ -10,6 +10,8 @@ class Roulette:
 	def __init__(self):
 		self.nums = [Roulette_number(num, "green") if num in self.NUMBERS[::19] else Roulette_number(num, "red") if int(num) % 2 != 0 and num != "0" else Roulette_number(num, "black") for num in self.NUMBERS]
 
-		for num in (self.nums):
-			print(num)
+	def spin(self):
+		return random.choice(self.nums)
 r = Roulette()		
+res = r.spin()
+print(res)
