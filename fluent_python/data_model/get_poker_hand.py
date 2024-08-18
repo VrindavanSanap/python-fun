@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-from french_deck import Deck
 import random
+
+from french_deck import Deck
 
 deck = Deck()
 random.shuffle(deck)
