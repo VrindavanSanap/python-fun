@@ -10,22 +10,23 @@ CARDS = [Card(rank, suit) for suit in SUITS for rank in RANKS]
 
 
 class Deck:
-  def __init__(self, cards = CARDS):
+  def __init__(self, cards=CARDS):
     self._cards = list(cards)
 
   def __len__(self):
     return len(self._cards)
 
   def __getitem__(self, i):
-    if isinstance(i,slice):
+    if isinstance(i, slice):
       return Deck(self._cards[i])
     return self._cards[i]
-  
+
   def __add__(self, other):
     return Deck(list(self) + list(other))
 
   def deal(self, num_players):
     return [self[i::num_players] for i in range(num_players)]
+
 
 beer_card = Card("7", "Diamonds")
 deck = Deck()
@@ -41,9 +42,11 @@ Its easier to benefit from the rich Python standard library and avoid reinventin
 the wheel, like the random.choice function.
 """
 
+
 # Python supports monkey patching
 def put(deck, position, card):
   deck._cards[position] = card
+
 
 Deck.__setitem__ = put
 
@@ -55,4 +58,3 @@ random.shuffle(deck)
 print(deck[:5])
 for card in deck[:3]:
   print(card)
-
