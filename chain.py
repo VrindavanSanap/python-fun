@@ -12,5 +12,5 @@ combined2 = chain(list1, list4)
 result = list(combined)
 result2 = list(combined2)
 
-print(result)  
-print(result2)  
+print(result)
+print(result2)
