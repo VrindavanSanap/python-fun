@@ -1,8 +1,10 @@
-import requests
 import time
+
+import requests
 
 BASE = "https://dummyjson.com/quotes"
 END_POINT = "random"
+
 
 def call_api(base, endpoint):
   resp = requests.get(f"{base}/{endpoint}")
@@ -11,9 +13,11 @@ def call_api(base, endpoint):
   else:
     return resp.json()
 
+
 def get_random_quote():
   resp_json = call_api(BASE, END_POINT)
   return resp_json["quote"]
+
 
 while True:
   st = time.time()
@@ -22,5 +26,3 @@ while True:
   et = time.time()
   time_taken = et - st
   print(f"Got quote in {time_taken:.4f} seconds")
-
-
