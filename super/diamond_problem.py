@@ -1,21 +1,23 @@
 class Engine:
-	def make_sound(self):
-		print("Generic sound")
+  def make_sound(self):
+    print("Generic sound")
+
 
 class Car(Engine):
-	def make_sound(self):
-		print("Horn sound")
+  def make_sound(self):
+    print("Horn sound")
+
 
 class Robot(Engine):
-	def make_sound(self):
-		print("Robot sound")
+  def make_sound(self):
+    print("Robot sound")
+
 
 class Transformer(Car, Robot):
-	pass
+  pass
+
 
 t = Transformer()
 t.make_sound()
 
 print(Transformer.mro())
-
-
