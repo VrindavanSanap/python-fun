@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import random
 from collections import namedtuple
-
+from collections.abc import MutableSequence
 Card = namedtuple("Card", "rank suit")
 RANKS = [str(n) for n in range(2, 11)] + list("JQKA")
 SUITS = "spades diamonds clubs hearts".split()
@@ -10,17 +10,37 @@ SUIT_SYMBOLS = {"spades": "♠", "diamonds": "♦", "clubs": "♣", "hearts": "�
 CARDS = [Card(rank, suit) for suit in SUITS for rank in RANKS]
 
 
-class Deck:
+class Deck(MutableSequence):
   def __init__(self, cards=CARDS):
     self._cards = list(cards)
 
   def __len__(self):
     return len(self._cards)
 
-  def __getitem__(self, i):
-    if isinstance(i, slice):
-      return Deck(self._cards[i])
-    return self._cards[i]
+  def __getitem__(self, index):
+    if isinstance(index, slice):
+      return Deck(self._cards[index])
+    return self._cards[index]
+
+  def __setitem__(self, index, cards):
+    if isinstance(index, slice):
+      if all(isinstance(card, Card) for card in cards):
+        self._cards[index] = cards
+      else:
+        raise ValueError("All assigned values must be Card instances")
+    elif isinstance(cards, Card):
+      self._cards[index] = cards
+    else:
+      raise ValueError("Assigned value must be a Card instance")
+
+  def __delitem__(self, index):
+    
+    del self._cards[index]
+
+  def insert(self, index, value):
+    if not isinstance(value, Card):
+      raise ValueError("Inserted value must be a Card instance")
+    self._cards.insert(index, value)
 
   def __add__(self, other):
     return Deck(list(self) + list(other))
@@ -55,14 +75,6 @@ what?”)
 Its easier to benefit from the rich Python standard library and avoid reinventing
 the wheel, like the random.choice function.
 """
-
-
-# Python supports monkey patching
-def put(deck, position, card):
-  deck._cards[position] = card
-
-
-Deck.__setitem__ = put
 
 
 if __name__ == "__main__":
