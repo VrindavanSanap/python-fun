@@ -2,6 +2,7 @@
 import random
 from collections import namedtuple
 from collections.abc import MutableSequence
+
 Card = namedtuple("Card", "rank suit")
 RANKS = [str(n) for n in range(2, 11)] + list("JQKA")
 SUITS = "spades diamonds clubs hearts".split()
@@ -34,7 +35,6 @@ class Deck(MutableSequence):
       raise ValueError("Assigned value must be a Card instance")
 
   def __delitem__(self, index):
-    
     del self._cards[index]
 
   def insert(self, index, value):
