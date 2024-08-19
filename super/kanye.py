@@ -21,3 +21,4 @@ class ASAPSebby(ASAPRockey, KanyeWest):
 
 sebby = ASAPSebby()
 
+# Using super() solves the diamond problem
