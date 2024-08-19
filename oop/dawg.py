@@ -1,6 +1,7 @@
-#/bin/local/env python3
+# /bin/local/env python3
 
-class Dog:  
+
+class Dog:
   def __init__(self, name):
     self.name = name
 
