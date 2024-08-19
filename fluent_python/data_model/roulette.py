@@ -3,7 +3,7 @@
 import random
 from collections import namedtuple
 
-Roulette_number = namedtuple("R_num", "number color")
+Roulette_number = namedtuple("Roulette_number", "number color")
 
 
 class Roulette:
