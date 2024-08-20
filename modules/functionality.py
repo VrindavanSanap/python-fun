@@ -1,0 +1,2 @@
+def thanos():
+  print("snap")
