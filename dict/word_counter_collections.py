@@ -4,9 +4,8 @@ import sys
 
 counts = collections.Counter()
 for line in sys.stdin:
-    words = line.lower().split()
-    counts.update(words)
+  words = line.lower().split()
+  counts.update(words)
 
 for word, count in counts.most_common()[:10]:
-    print(word, count)
-
+  print(word, count)
